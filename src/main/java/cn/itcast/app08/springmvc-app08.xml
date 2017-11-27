@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	 http://www.springframework.org/schema/beans/spring-beans.xsd
+     	 http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+     	 http://www.springframework.org/schema/tx/spring-tx.xsd
+     	 http://www.springframework.org/schema/mvc
+     	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+   
+   <!-- 注册Action -->  	 
+   <bean name="/add.action" class="cn.itcast.app08.UserAction"></bean>
+   <!-- <bean name="/update.action" class="cn.itcast.app08.UserAction"></bean>
+   <bean name="/delete.action" class="cn.itcast.app08.UserAction"></bean>
+   <bean name="/find.action" class="cn.itcast.app08.UserAction"></bean> -->
+   
+   
+   
+   <!-- 注册Action -->
+   <bean id="userActionId" class="cn.itcast.app08.UserAction">
+   </bean>
+   
+   <!-- 注册映射器
+   		【适合】于将多个请求，映射到同一个Action
+    -->
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   		<property name="mappings">
+   			<props>
+   				<!-- key表示请求路径 -->
+   				<prop key="/update.action">userActionId</prop>
+   				<prop key="/delete.action">userActionId</prop>
+   				<prop key="/find.action">userActionId</prop>
+   			</props>
+   		</property>
+   </bean>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <!-- 映射器 -->
+   <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+   
+   <!-- 适配器 -->
+   
+   <!-- 视图解析器 -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   		<property name="prefix" value="/jsp/"/>
+   		<property name="suffix" value=".jsp"/>
+   </bean>
+   
+</beans> 
